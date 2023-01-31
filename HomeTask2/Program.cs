@@ -1,26 +1,33 @@
 ﻿/*
-Задача 66: Задайте значения M и N. Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.
+Задача 66: Задайте значения M и N. 
+Напишите программу, которая найдёт сумму натуральных элементов 
+в промежутке от M до N.
 
 M = 1; N = 15 -> 120
 M = 4; N = 8. -> 30
+
 */
 
 Console.Clear();
+
+int m = GetNumber("Введите число M больше 0: ");
+int n = GetNumber("Введите число N больше M: ");
+int sum = 0;
 
 int GetNumber(string message)
 {
     int result = 0;
     bool isCorrect = false;
 
-    while(!isCorrect)
+    while (!isCorrect)
     {
-        Console.WriteLine(message);
+        Console.Write(message);
 
-        if(int.TryParse(Console.ReadLine(), out result) && result > 0)
+        if (int.TryParse(Console.ReadLine(), out result) && result > 0)
         {
             isCorrect = true;
         }
-        else 
+        else
         {
             Console.WriteLine("Введите корректное число.");
         }
@@ -28,20 +35,18 @@ int GetNumber(string message)
     return result;
 }
 
-string GetValues(int n, int m)
+
+void Summ(int m)
+{
+    sum = sum + m;
+    m++;
+    if (m > n)
     {
-        if (n == m)
-        {
-            int count = m;
-            return n.ToString();
-        }
-        return GetValues(n-1, m) + $", {count}";
-
+        Console.Write($"Сумма натуральных чисел от M до N равна {sum} ");
+        return;
     }
+    Summ(m);
+}
 
-//int n = GetNumber("Введите число N больше M: ");
-int m = GetNumber("Введите число M больше 1: ");
-int n = GetNumber("Введите число N больше M: ");
+Summ(m);
 
-GetValues(n, m);
-Console.WriteLine(GetValues(n, m));
