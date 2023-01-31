@@ -13,7 +13,7 @@ int GetNumber(string message)
 
     while(!isCorrect)
     {
-        Console.WriteLine(message);
+        Console.Write(message);
 
         if(int.TryParse(Console.ReadLine(), out result) && result > 0)
         {
@@ -27,16 +27,16 @@ int GetNumber(string message)
     return result;
 }
 
-string GetValues(int n)
+void GetValues(int n)
     {
-        if (n == 1)
+        Console.Write($"{n} ");
+        if (n > 1)
         {
-            return n.ToString();
+GetValues(n-1);
         }
-        return GetValues(n-1) + $", {n}";
+        
     }
 
-int n = GetNumber("Введите число N больше 1: ");
+int n = GetNumber("Введите число N: ");
 
 GetValues(n);
-Console.WriteLine(GetValues(n));
